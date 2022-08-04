@@ -129,7 +129,7 @@ func EncodeJson(firstName string, lastName string, email string, userTickets uin
 		FirstName: firstName, LastName: lastName, Email: email, UserTickets: uint(userTickets),
 	}
 
-	fmt.Println("Before: ", attendingUsers)
+	fmt.Println(" ", attendingUsers)
 
 	finalJson, err := json.MarshalIndent(attendingUsers, "", "    ")
 	if err != nil {
