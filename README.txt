@@ -1,4 +1,4 @@
-<h1> Booking App </h1>
+# Booking App
 
 Requirements 
 * GO 1.18 or later
