@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
@@ -12,23 +13,32 @@ var bookings []string
 
 const conferenceTickets int = 50
 
+type confAttendings struct {
+	FirstName   string `json:"fname"`
+	LastName    string `json:"lname"`
+	Email       string `json:"email"`
+	UserTickets uint   `json:"tickets"`
+}
+
 func main() {
 
 	greetUsers()
 
 	for {
-		firstName, lastName, email, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, uint(userTickets))
+		userData := getUserInput()
+		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(userData.FirstName, userData.LastName, userData.Email, userData.UserTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber {
 
-			bookTicket(uint(userTickets), firstName, lastName, email)
-			go sendTicket(uint(userTickets), firstName, lastName, email)
+			bookTicket(userData.UserTickets, userData.FirstName, userData.LastName, userData.Email)
+			go sendTicket(userData.UserTickets, userData.FirstName, userData.LastName, userData.Email)
 
 			// call function print first names
 			firstNames := getFirstNames()
-			fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
+			fmt.Printf("Current bookings are: %v\n", firstNames)
+			stringify := EncodeJson(userData.FirstName, userData.LastName, userData.Email, userData.UserTickets)
+			fmt.Println("User: ", stringify)
 			if remainingTickets == 0 {
 				fmt.Print("The conference is sold out!")
 				break
@@ -63,9 +73,11 @@ func getFirstNames() []string {
 		var names = strings.Fields(booking)
 		firstNames = append(firstNames, names[0])
 		break
+
 	}
 	return firstNames
 }
+
 func validateUserInput(firstName string, lastName string, email string, userTickets uint) (bool, bool, bool) {
 	isValidName := len(firstName) >= 2 && len(lastName) >= 2
 	isValidEmail := strings.Contains(email, "@")
@@ -73,7 +85,7 @@ func validateUserInput(firstName string, lastName string, email string, userTick
 	return isValidName, isValidEmail, isValidTicketNumber
 }
 
-func getUserInput() (string, string, string, int) {
+func getUserInput() confAttendings {
 	var firstName string
 	var lastName string
 	var email string
@@ -91,8 +103,10 @@ func getUserInput() (string, string, string, int) {
 	fmt.Print("Enter number of tickets: ")
 	fmt.Scan(&userTickets)
 
-	return firstName, lastName, email, userTickets
+	fmt.Println(firstName, lastName, email, userTickets)
+	return confAttendings{FirstName: firstName, LastName: lastName, Email: email, UserTickets: uint(userTickets)}
 }
+
 func bookTicket(userTickets uint, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - uint(userTickets)
 	bookings = append(bookings, firstName+" "+lastName)
@@ -108,4 +122,19 @@ func sendTicket(userTickets uint, firstName string, lastName string, email strin
 	fmt.Println("\n#######################")
 	fmt.Printf("Sending ticket: \n %v \nto email address %v\n", ticket, email)
 	fmt.Println("#######################")
+}
+
+func EncodeJson(firstName string, lastName string, email string, userTickets uint) string {
+	attendingUsers := confAttendings{
+		FirstName: firstName, LastName: lastName, Email: email, UserTickets: uint(userTickets),
+	}
+
+	fmt.Println("Before: ", attendingUsers)
+
+	finalJson, err := json.MarshalIndent(attendingUsers, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+
+	return string(finalJson[:])
 }
