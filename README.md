@@ -1,14 +1,18 @@
-What is the Booking App?
-    - The Booking App is a GO written program which invites a user to register for a convention. By enrolling with their name, 
-email, and the number of tickets they would like to purchase. This then prints a receipt for the user's confirmation.
+# Booking App
 
-Why is this project useful?
+Requirements 
+* GO 1.18 or later
+
+## What is the Booking App?
+    - The Booking App is a GO written program which invites a user to register for a convention. By enrolling with their name, email, and the number of tickets they would like to purchase. This then prints a receipt for the user's confirmation.
+
+## Why is this project useful?
     - This project was built on the idea of creating a basic yet efficient form of creating bookings for a convention.
 The Booking App is a great project for developers who are looking to begin their Golang journey. This application 
 introduces the user to the main concepts of golang but later dives into the topics and material to which make GO 
 such a strong and effiencent programming langauge.
 
-How to build the project?
+## How to build the project?
     - There are many routes one can take when building a similar project. However in this project variables 
 and constants were used for user's first and last name, emails, and the number of tickets being purchased 
 as well the the number of tickets avilable to be purchased. In many instances, the program also use's the 
@@ -22,8 +26,9 @@ or block any current thread for a certain time period. This allows to have a bet
 executing "sendTickets" in a separate thread. In the example of the Booking App, the program is able to execute 
 the function of sendTickets to mulitple user's with different sets of data.
 
-How to run the project? 
-    go run .
+## How to run the project? 
+    npm install 
+    
 
-How to exit the program?
+## How to exit the program?
     CTRL + C
