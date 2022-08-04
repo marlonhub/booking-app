@@ -1,6 +1,5 @@
 What is the Booking App?
-    - The Booking App is a GO written program which invites a user to register for a convention. By enrolling with their name, 
-email, and the number of tickets they would like to purchase. This then prints a receipt for the user's confirmation.
+    - The Booking App is a GO written program which invites a user to register for a convention. By enrolling with their name, email, and the number of tickets they would like to purchase. This then prints a receipt for the user's confirmation.
 
 Why is this project useful?
     - This project was built on the idea of creating a basic yet efficient form of creating bookings for a convention.
