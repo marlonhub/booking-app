@@ -2,6 +2,8 @@
 
 # Requirements 
 * GO 1.18 or later
+* GO PATH
+* GIT 
 
 ## What is the Booking App?
 The Booking App is a GO written program which invites a user to register for a convention. By enrolling with their name, email, and the number of tickets they would like to purchase. This then prints a receipt for the user's confirmation.
@@ -26,8 +28,11 @@ or block any current thread for a certain time period. This allows to have a bet
 executing "sendTickets" in a separate thread. In the example of the Booking App, the program is able to execute 
 the function of sendTickets to mulitple user's with different sets of data.
 
-## How to run the project? 
-    npm install 
+## How to clone project repo? 
+    mkdir -p $GOPATH/src/github.com/marlonhub/booking-app
+    cd $GOPATH/src/github.com/marlonhub/booking-app
+    
+    git clone git@github.com:marlonhub/booking-app.git
     
 
 ## How to exit the program?
