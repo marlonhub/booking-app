@@ -2,8 +2,7 @@
 
 # Requirements 
 * GO 1.18 or later
-* GO PATH
-* GIT 
+
 
 ## What is the Booking App?
 The Booking App is a GO written program which invites a user to register for a convention. By enrolling with their name, email, and the number of tickets they would like to purchase. This then prints a receipt for the user's confirmation.
