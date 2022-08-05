@@ -27,9 +27,7 @@ or block any current thread for a certain time period. This allows to have a bet
 executing "sendTickets" in a separate thread. In the example of the Booking App, the program is able to execute 
 the function of sendTickets to mulitple user's with different sets of data.
 
-## How to clone project repo? 
-    mkdir -p $GOPATH/src/github.com/marlonhub/booking-app
-    cd $GOPATH/src/github.com/marlonhub/booking-app
+## How to clone project repo using Git? 
     
     git clone git@github.com:marlonhub/booking-app.git
     
